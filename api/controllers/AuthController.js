@@ -2,7 +2,6 @@ import models from '../models';
 import { hashPassword, comparePassword } from '../helpers/bcrypt';
 import { emailRegEx } from '../helpers';
 import { createToken } from '../helpers/jwt';
-import { REPLServer } from 'repl';
 
 const { User, Code } = models;
 const Auth = {
@@ -75,7 +74,6 @@ const Auth = {
       });
     }
     } catch (err) {
-      console.log(err)
       return next(new Error(err));
 
     }

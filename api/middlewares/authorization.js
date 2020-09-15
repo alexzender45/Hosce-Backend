@@ -26,7 +26,6 @@ export const authorizeUsers = (req, res, next) => {
 };
 
 export const authorizeAdmins = (req, res, next) => {
-  console.log(req.decoded.role)
   if (req.decoded.role !== 'admin') {
     return res.status(401).send({ error: 'Unauthorized access' });
   }
