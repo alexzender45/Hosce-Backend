@@ -39,7 +39,7 @@
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-react": "^7.19.0",
-    "pg": "^7.18.2"
+    "pg": "^8.3.3"
   },
   "dependencies": {
     "@babel/runtime": "^7.8.7",
