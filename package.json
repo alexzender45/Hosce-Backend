@@ -1,0 +1,75 @@
+{
+  "name": "voiceer-backend",
+  "version": "1.0.0",
+  "description": "Backend api for Voiceer",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf build && mkdir build",
+    "build": "npm run clean && babel api --out-dir build",
+    "start": "node build/index.js",
+    "dev": "nodemon --exec babel-node api/index.js",
+    "lint": "eslint --ignore-path .gitignore .",
+    "lint:fix": "eslint --fix --ignore-path .gitignore .",
+    "migrate:all": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all",
+    "pretest": "cross-env NODE_ENV=test npm run migrate:all",
+    "test": "cross-env NODE_ENV=test nyc mocha --require @babel/register --timeout 15000 ./tests/*.test.js --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexzender45/Voiceer-backend.git"
+  },
+  "author": "\"Sam and Awa\"",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexzender45/Voiceer-backend/issues"
+  },
+  "homepage": "https://github.com/alexzender45/Voiceer-backend#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.7",
+    "@babel/node": "^7.8.7",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/preset-react": "^7.8.3",
+    "@babel/register": "^7.8.6",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-react": "^7.19.0",
+    "pg": "^7.18.2"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.8.7",
+    "bcrypt": "^5.0.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^7.1.1",
+    "nodemon": "^2.0.2",
+    "nyc": "^15.0.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.21.5",
+    "sequelize-cli": "^5.5.1",
+    "uuid": "^8.3.0",
+    "validator": "^12.2.0"
+  },
+  "nyc": {
+    "exclude": [
+      "config/config.js",
+      "models",
+      "routes/index.js",
+      "services",
+      "node_modules"
+    ],
+    "cache": false
+  }
+}
