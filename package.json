@@ -1,5 +1,5 @@
 {
-  "name": "voiceer-backend",
+  "name": "trf-backend",
   "version": "1.0.0",
   "description": "Backend api for Voiceer",
   "main": "index.js",
