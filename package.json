@@ -10,7 +10,7 @@
     "dev": "nodemon --exec babel-node api/index.js",
     "lint": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --fix --ignore-path .gitignore .",
-    "migrate:all": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all",
+    "migrate:all": "sequelize db:migrate:undo:all && sequelize db:migrate",
     "pretest": "cross-env NODE_ENV=test npm run migrate:all",
     "test": "cross-env NODE_ENV=test nyc mocha --require @babel/register --timeout 15000 ./tests/*.test.js --exit"
   },
