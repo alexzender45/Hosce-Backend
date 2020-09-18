@@ -39,7 +39,7 @@
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-react": "^7.19.0",
-    "pg": "^7.8.1"
+    "pg": "^7.18.2"
   },
   "dependencies": {
     "@babel/runtime": "^7.8.7",
@@ -60,8 +60,7 @@
     "sequelize": "^4.43.1",
     "sequelize-cli": "^5.5.1",
     "uuid": "^8.3.0",
-    "validator": "^12.2.0",
-    "pg": "^7.8.1"
+    "validator": "^12.2.0"
   },
   "nyc": {
     "exclude": [

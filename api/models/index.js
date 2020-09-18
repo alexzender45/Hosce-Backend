@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import Sequelize from 'sequelize';
 import dbConfig from '../config/config';
+var pg = require('pg')
 
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
