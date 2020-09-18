@@ -9,8 +9,8 @@ app.use(cors({ credentials: true, origin: true }));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-//// error handler
+//
+// error handler
 app.use((error, req, res, next) => res.status(error.status || 500).send(error));
 
 routes(app);
