@@ -6,6 +6,7 @@
   "scripts": {
     "clean": "rm -rf build && mkdir build",
     "build": "npm run clean && babel api --out-dir build",
+    "prestart": "next build",
     "start": "node build/index.js",
     "dev": "nodemon --exec babel-node api/index.js",
     "lint": "eslint --ignore-path .gitignore .",
