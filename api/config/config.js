@@ -14,8 +14,8 @@ module.exports = {
     logging: false
   },
   production: {
-    database: 'DD_PROD_URL',
-    use_env_variables: process.env.DB_PROD_URL,
+    database: 'voiceer_prod',
+    use_env_variables: 'DB_PROD_DEV',
     dialect: 'postgres',
   },
 };
