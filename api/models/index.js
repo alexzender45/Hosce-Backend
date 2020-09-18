@@ -5,7 +5,7 @@ import dbConfig from '../config/config';
 var pg = require('pg')
 
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
+const env = process.env.HEROKU_POSTGRESQL_ROSE_URL || 'development';
 const config = dbConfig[env];
 const db = {};
 
