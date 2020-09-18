@@ -15,7 +15,7 @@ module.exports = {
   },
   production: {
     database: 'voiceer_prod',
-    use_env_variables: 'HEROKU_POSTGRESQL_ROSE_URL',
+    use_env_variables: 'DATABASE_URL',
     dialect: 'postgres',
   },
 };
