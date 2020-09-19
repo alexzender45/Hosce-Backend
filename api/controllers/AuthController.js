@@ -9,7 +9,7 @@ const Auth = {
     try {
       const genCode = await Code.findOne({ where: { code: req.body.codeReg }})
       if(genCode === null){
-        return res.send({
+        return res.json({
           status: 'error',
           error: 'Please contact the Admin for registration code',
         });
@@ -17,7 +17,7 @@ const Auth = {
       if(genCode.code === Number(req.body.codeReg)){
         const find = await User.findOne({ where: { codeReg: genCode.code }})
         if(find){
-          return res.send({
+          return res.json({
             status: 'error',
             error: 'Code already used',
           });
@@ -63,7 +63,8 @@ const Auth = {
           totalearning : user.totalearning + 0.00,
         })
       }
-      return res.status(201).send({
+      return res.status(201).json({
+        status: 'success',
         user: {
           fullname, username, email, tel, gender, bankdetails, link, availableincome, totalearning, status, 
           sponsor: user.sponsor,
@@ -74,8 +75,10 @@ const Auth = {
       });
     }
     } catch (err) {
-      return next(new Error(err));
-
+      return res.status(201).json({
+       status: 'error',
+       error: 'OOp Something went wrong'
+      })
     }
   },
 
@@ -83,14 +86,18 @@ const Auth = {
   async signIn(req, res, next) {
     const { password, email, username} = req.body;
     if ((!emailRegEx.test(email) && !username) || !password) {
-      return res.status(400).json({ error: 'Wrong Email/Password combination' });
+      return res.status(400).json({ 
+        status: 'error',
+        error: 'Wrong Email/Password combination'
+       });
     }
     try {
       const userByEmail = email ? await User.findOne({ where: { email } }) : null;
       if (userByEmail) {
         if (comparePassword(password, userByEmail.password)) {
           const token = createToken(userByEmail);
-          return res.status(200).send({
+          return res.status(200).json({
+            status: 'success',
             user: {
               username: userByEmail.username, email: userByEmail.email, tel: userByEmail.tel 
             },
@@ -102,7 +109,8 @@ const Auth = {
       if (userByUsername) {
         if (comparePassword(password, userByUsername.password)) {
           const token = createToken(userByUsername);
-          return res.status(200).send({
+          return res.status(200).json({
+            status: 'success',
             user: {
               username: userByUsername.username,
               email: userByUsername.email,
@@ -114,11 +122,16 @@ const Auth = {
         }
       }
       if (!userByUsername && !userByEmail) {
-        return res.status(404).send({ error: 'User does not exist' });
+        return res.status(404).json({
+           status: 'error',
+           error: 'User does not exist'
+           });
       }
-      return res.status(400).send({ error: 'Wrong Email/Password combination' });
+      return res.status(400).json({
+         status: 'error',
+         error: 'Wrong Email/Password combination' 
+        });
     } catch (err) {
-      console.log(err);
       return next(new Error(err));
     }
   },
