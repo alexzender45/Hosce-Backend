@@ -5,28 +5,40 @@ const { User } = models;
 
 const UserController = {
   async fetchAll(req, res, next) {
+    res.setHeader('content-type', 'application/json');
     try {
       const users = await User.findAll();
-      return res.status(200).send(users);
+      return res.status(200).json({
+        status: 'success',
+        users
+      });
     } catch (err) {
       return next(new Error(err));
     }
   },
 
   async fetchOne(req, res, next) {
+    res.setHeader('content-type', 'application/json');
     try {
       const user = await User.findByPk(req.params.userId);
       if (!user) {
-        return res.status(400).send({ error: 'User does not exist' });
+        return res.status(400).json({ 
+          status: 'error',
+          error: 'User does not exist' 
+        });
       }
       if(user)
-      return res.status(200).send(user);
+      return res.status(200).json({
+        status: 'success',
+        user
+      });
     } catch (err) {
       return next(new Error(err));
     }
   },
 
   async update(req, res, next) {
+    res.setHeader('content-type', 'application/json');
     try {
       const { userId } = req.params;
       const {
@@ -34,7 +46,10 @@ const UserController = {
       } = req.body;
       const existingUser = await User.findByPk(userId);
       if (!existingUser) {
-        return res.status(400).send({ error: 'User does not exist' });
+        return res.status(400).send({
+          status: 'error',
+          error: 'User does not exist'
+         });
       }
       const updatedUser = await existingUser.update({
         fullname: fullname || existingUser.fullname,
@@ -47,21 +62,30 @@ const UserController = {
         totalearning: totalearning || existingUser.totalearning
         
       });
-      return res.status(200).send(updatedUser);
+      return res.status(200).json({
+        status: 'success',
+        updatedUser
+      });
     } catch (err) {
       return next(new Error(err));
     }
   },
 
   async delete(req, res, next) {
+    res.setHeader('content-type', 'application/json');
     try {
       const { userId } = req.params;
       const user = await User.findByPk(userId);
       if (!user) {
-        return res.status(400).send({ error: 'User does not exist' });
+        return res.status(400).json({ 
+          status: 'error',
+          error: 'User does not exist'
+         });
       }
       await user.destroy();
-      return res.status(200).send({});
+      return res.status(200).json({
+        status: 'success'
+      });
     } catch (err) {
       return next(new Error(err));
     }

@@ -4,6 +4,7 @@ const { Code } = models;
 
 const CodeGen = {
     async generateCode(req, res, next) {
+      res.setHeader('content-type', 'application/json');
       try {
         const { code } = req.body;
         const codes = await Code.create({ code });

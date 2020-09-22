@@ -7,7 +7,7 @@ import CodeGen from '../controllers/CodeController'
 
 const routes = (app) => {
   app.get('/', (req, res) => {
-    res.send({ message: 'Welcome to Voiceer API' });
+    res.json({ message: 'Welcome to Voiceer API' });
   });
 
   /**

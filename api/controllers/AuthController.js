@@ -6,10 +6,11 @@ import { createToken } from '../helpers/jwt';
 const { User, Code } = models;
 const Auth = {
   async signUp(req, res, next) {
+    res.setHeader('content-type', 'application/json');
     try {
       const genCode = await Code.findOne({ where: { code: req.body.codeReg }})
       if(genCode === null){
-        return res.json({
+        return res.status(400).json({
           status: 'error',
           error: 'Please contact the Admin for registration code',
         });
@@ -17,7 +18,7 @@ const Auth = {
       if(genCode.code === Number(req.body.codeReg)){
         const find = await User.findOne({ where: { codeReg: genCode.code }})
         if(find){
-          return res.json({
+          return res.status(400).send({
             status: 'error',
             error: 'Code already used',
           });
@@ -63,7 +64,8 @@ const Auth = {
           totalearning : user.totalearning + 0.00,
         })
       }
-      return res.status(201).json({
+      console.log(user)
+      return res.status(201).send({
         status: 'success',
         user: {
           fullname, username, email, tel, gender, bankdetails, link, availableincome, totalearning, status, 
@@ -75,7 +77,7 @@ const Auth = {
       });
     }
     } catch (err) {
-      return res.status(201).json({
+      return res.status(400).json({
        status: 'error',
        error: 'OOp Something went wrong'
       })
@@ -84,6 +86,7 @@ const Auth = {
 
   // Login
   async signIn(req, res, next) {
+    res.setHeader('content-type', 'application/json');
     const { password, email, username} = req.body;
     if ((!emailRegEx.test(email) && !username) || !password) {
       return res.status(400).json({ 
