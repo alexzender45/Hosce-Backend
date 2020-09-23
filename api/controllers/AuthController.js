@@ -26,7 +26,7 @@ const Auth = {
       const {
         fullname, username, email, tel, gender, bankdetails, password, codeReg, availableincome, totalearning, status, role
       } = req.body;
-       const link = `http://localhost:6000/api/auth/sign_up?referral=${req.body.username}`
+       const link = `http://trfhosce.com/?referral=${req.body.username}`
       const hash = hashPassword(password);
       const user = await User.create({
         fullname, username, email, tel, gender, bankdetails, password: hash, link, codeReg, availableincome, totalearning, status, role
@@ -43,7 +43,7 @@ const Auth = {
         })
       }else{
         const see = await User.findOne({ where: { username:check } });
-        if(user.status === 'full'){
+        if(user.status === 'Normal'){
         see.update({referralCount : see.referralCount + 1,
           amountByReferral : see.amountByReferral + 5000,
           availableincome : user.availableincome + 0.00,
