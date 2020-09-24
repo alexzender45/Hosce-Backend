@@ -33,7 +33,7 @@ const Auth = {
       });
       const token = createToken(user);
       const check = req.query.referral
-      if(check == undefined){
+      if(check == undefined || check == null){
         user.update({referralCount : + 0,
           amountByReferral : user.referralCount + 0.00,
           availableincome : user.availableincome + 0.00,
