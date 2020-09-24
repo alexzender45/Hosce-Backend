@@ -65,7 +65,7 @@ const Auth = {
         })
       }
       console.log(user)
-      return res.status(201).send({
+      return res.status(201).json({
         status: 'success',
         user: {
           fullname, username, email, tel, gender, bankdetails, link, availableincome, totalearning, status, 

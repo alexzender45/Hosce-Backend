@@ -6,7 +6,7 @@ const { User } = models;
 
 export const validateSignUp = async (req, res, next) => {
   const {
-    username, email, password, tel
+    username, email, password, tel, gender, bankdetails, codeReg, status
   } = req.body;
   if (!emailRegEx.test(email)) {
     return res.status(400).json({ 
