@@ -42,7 +42,7 @@ const UserController = {
     try {
       const { userId } = req.params;
       const {
-        fullname, tel, gender, bankdetails, status, role, availableincome, totalearning
+        fullname, tel, gender, bankdetails, status, amountByReferral, availableincome, totalearning
       } = req.body;
       const existingUser = await User.findByPk(userId);
       if (!existingUser) {
@@ -57,7 +57,7 @@ const UserController = {
         gender: gender || existingUser.gender,
         bankdetails: bankdetails || existingUser.bankdetails,
         status: status || existingUser.status,
-        role: role || existingUser.role,
+        amountByReferral: amountByReferral || existingUser.amountByReferral,
         availableincome: availableincome || existingUser.availableincome,
         totalearning: totalearning || existingUser.totalearning
         
