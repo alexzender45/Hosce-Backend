@@ -8,18 +8,30 @@ const CodeGen = {
       try {
         const { code } = req.body;
         const codes = await Code.create({ code });
-        return res.status(201).send({codes});
+        return res.status(201).json({
+          status: 'success',
+          codes
+        });
       } catch (err) {
         console.log(err)
-        return next(new Error(err));
+        return res.status(400).json({
+          status: 'error',
+          err: err
+        });
       }
     },
     async fetchAllCodes(req, res, next) {
         try {
           const code = await Code.findAll();
-          return res.status(200).send(code);
+          return res.status(200).json({
+            status: 'success',
+            code
+          });
         } catch (err) {
-          return next(new Error(err));
+          return res.status(400).json({
+            status: 'success',
+            err: err
+          });
         }
       }
 }
