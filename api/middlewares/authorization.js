@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 import models from '../models';
-import verifyToken from '../helpers/jwt'
 
 const { User } = models;
 
@@ -16,7 +15,7 @@ export const authorizeUsers = (req, res, next) => {
   return jwt.verify(token, process.env.JWT_SECRET, { expiresIn: '24h' }, (err, decoded) => {
     if (err) {
       return res.status(401).json({
-        status: 'error',
+        status: 'Session Expired Login again',
          error: err 
         });
     }
