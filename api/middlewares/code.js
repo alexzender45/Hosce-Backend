@@ -12,7 +12,7 @@ export const validateCode = async (req, res, next) => {
   }
 
   if (code.length > 7 || code.length < 7) {
-    return res.status(400).send({ error: 'code must be 6 number' });
+    return res.status(400).send({ error: 'code must be 7 number' });
   }
   const codeNum = code ? await Code.findOne({ where: { code } }) : null;
   if (codeNum) {

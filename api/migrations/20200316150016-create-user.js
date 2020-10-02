@@ -48,7 +48,7 @@ module.exports = {
       defaultValue: 'voter'
     },
     tel: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
       allowNull: false
     },
     totalearning: {
