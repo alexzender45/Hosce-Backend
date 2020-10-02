@@ -26,7 +26,7 @@ const routes = (app) => {
 /**
    * CODE ENDPOINTS
    */
-  app.post('/api/create_code',authorizeUsers, authorizeAdmins, validateCode, CodeGen.generateCode);
+  app.post('/api/create_code', validateCode, CodeGen.generateCode);
   app.get('/api/all_codes', authorizeUsers, authorizeAdmins, CodeGen.fetchAllCodes);
 };
 export default routes;

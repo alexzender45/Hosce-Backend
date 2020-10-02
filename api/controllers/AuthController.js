@@ -15,7 +15,7 @@ const Auth = {
           error: 'Please contact the Admin for registration code',
         });
       }
-      if(genCode.code === Number(req.body.codeReg)){
+      if(genCode.code === req.body.codeReg){
         const find = await User.findOne({ where: { codeReg: genCode.code }})
         if(find){
           return res.status(400).send({
