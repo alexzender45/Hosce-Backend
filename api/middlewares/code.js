@@ -11,11 +11,8 @@ export const validateCode = async (req, res, next) => {
     return res.status(400).send({ error: 'Code is required' });
   }
 
-  if (code.length > 6 || code.length < 6) {
+  if (code.length > 7 || code.length < 7) {
     return res.status(400).send({ error: 'code must be 6 number' });
-  }
-  if (!code) {
-    return res.status(400).send({ error: 'Tel number is required' });
   }
   const codeNum = code ? await Code.findOne({ where: { code } }) : null;
   if (codeNum) {
