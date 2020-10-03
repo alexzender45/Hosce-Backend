@@ -26,7 +26,7 @@ const Auth = {
       const {
         fullname, username, email, tel, gender, bankdetails, password, codeReg, availableincome, totalearning, status, role
       } = req.body;
-       const link = `http://localhost:6000/api/auth/sign_up?referral=${req.body.username}`
+       const link = `https://trfhosce.com/?referral=${req.body.username}`
       const hash = hashPassword(password);
       const user = await User.create({
         fullname, username, email, tel, gender, bankdetails, password: hash, link, codeReg, availableincome, totalearning, status, role
