@@ -37,7 +37,6 @@ const Auth = {
         user.update({referralCount : + 0,
           amountByReferral : user.referralCount + 0.00,
           availableincome : user.availableincome + 0.00,
-          status: 'half',
           totalearning : user.totalearning + 0.00,
           sponsor: 'No Sponsor'
         })
