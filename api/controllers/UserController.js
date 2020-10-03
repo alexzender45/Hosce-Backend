@@ -66,8 +66,10 @@ const UserController = {
         totalearning: totalearning || existingUser.totalearning
         
       });
+        const credit = await User.findOne({where: { username:existingUser.sponsor } })
       return res.status(200).json({
         status: 'success',
+        credit,
         updatedUser
       });
     } catch (err) {
