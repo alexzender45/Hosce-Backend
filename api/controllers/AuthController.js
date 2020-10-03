@@ -68,7 +68,7 @@ const Auth = {
       return res.status(201).json({
         status: 'success',
         user: {
-          fullname, username, email, tel, gender, bankdetails, link, availableincome, totalearning, status, createdAt, 
+          fullname, username, email, tel, gender, bankdetails, link, availableincome, totalearning, status, 
           sponsor: user.sponsor,
           amountByReferral: user.amountByReferral,
           referralCount: user.referralCount
