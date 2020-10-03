@@ -91,7 +91,7 @@ const Auth = {
     if ((!emailRegEx.test(email) && !username) || !password) {
       return res.status(400).json({ 
         status: 'error',
-        error: 'Wrong Email/Password combination'
+        error: 'Wrong Username/Password combination'
        });
     }
     try {
@@ -132,7 +132,7 @@ const Auth = {
       }
       return res.status(400).json({
          status: 'error',
-         error: 'Wrong Email/Password combination' 
+         error: 'Wrong Username/Password combination' 
         });
     } catch (err) {
       return next(new Error(err));

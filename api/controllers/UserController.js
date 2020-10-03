@@ -7,9 +7,13 @@ const UserController = {
   async fetchAll(req, res, next) {
     res.setHeader('content-type', 'application/json');
     try {
+      const allUsers = await User.findAndCountAll({
+        limit: 2000
+      })
       const users = await User.findAll();
       return res.status(200).json({
         status: 'success',
+        allUsers,
         users
       });
     } catch (err) {
