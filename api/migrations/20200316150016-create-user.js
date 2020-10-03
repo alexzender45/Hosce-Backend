@@ -72,7 +72,7 @@ module.exports = {
       allowNull: true,
     },
     codeReg: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
       allowNull: false
     },
     createdAt: {

@@ -77,6 +77,7 @@ const Auth = {
       });
     }
     } catch (err) {
+      console.log(err)
       return res.status(400).json({
        status: 'error',
        error: 'OOp Something went wrong'
