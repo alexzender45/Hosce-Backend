@@ -42,14 +42,14 @@ const Auth = {
         })
       }else{
         const see = await User.findOne({ where: { username:check } });
-        if(user.status === 'Normal'){
+        if(user.status === 'Normal' || user.status === 'normal'){
         see.update({referralCount : see.referralCount + 1,
           amountByReferral : see.amountByReferral + 5000,
           availableincome : user.availableincome + 0.00,
           totalearning : see.totalearning + 5000,
           totalearning : user.totalearning + 0.00,
         })
-      }else if(user.status === 'half'){
+      }else if(user.status === 'half' || user.status === 'Half'){
         see.update({referralCount : see.referralCount + 1,
           amountByReferral : see.amountByReferral + 0.00,
           availableincome : user.availableincome + 0.00,
