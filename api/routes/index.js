@@ -22,6 +22,7 @@ const routes = (app) => {
   app.get('/api/users',authorizeUsers, authorizeAdmins, UserController.fetchAll);
   app.get('/api/users/:userId', authorizeUsers, UserController.fetchOne);
   app.put('/api/users/:userId', authorizeUsers, authorizeAdmins, UserController.update);
+  app.post('/api/users/:userId', authorizeUsers, authorizeAdmins, UserController.changeStatus);
   app.delete('/api/users/:userId', authorizeUsers, authorizeAdmins, UserController.delete);
 /**
    * CODE ENDPOINTS

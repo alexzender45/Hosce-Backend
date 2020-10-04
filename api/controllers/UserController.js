@@ -66,11 +66,37 @@ const UserController = {
         totalearning: totalearning || existingUser.totalearning
         
       });
-        const credit = await User.findOne({where: { username:existingUser.sponsor } })
       return res.status(200).json({
         status: 'success',
-        credit,
         updatedUser
+      });
+    } catch (err) {
+      return next(new Error(err));
+    }
+  },
+
+  async changeStatus(req, res, next) {
+    res.setHeader('content-type', 'application/json');
+    try {
+      const { userId } = req.params;
+      const existingUser = await User.findByPk(userId);
+      if (!existingUser) {
+        return res.status(400).send({
+          status: 'error',
+          error: 'User does not exist'
+         });
+      }
+      if(existingUser.sponsor === 'No Sponsor'){
+      }else{
+        const credit = await User.findOne({where: { username:existingUser.sponsor } })
+      if(existingUser.status === "Half" || existingUser.status === "half"){
+        credit.update({
+          amountByReferral: credit.amountByReferral + 5000
+        })
+      }
+     }
+      return res.status(200).json({
+        status: 'success'
       });
     } catch (err) {
       return next(new Error(err));
