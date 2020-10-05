@@ -1,7 +1,7 @@
 import models from '../models';
+const nodemailer = require('nodemailer');
 import { hashPassword, comparePassword } from '../helpers/bcrypt';
 import { emailRegEx } from '../helpers';
-import nodemailer from "nodemailer";
 require('dotenv').config();
 import { createToken } from '../helpers/jwt';
 
