@@ -1,6 +1,8 @@
 import models from '../models';
 import { hashPassword, comparePassword } from '../helpers/bcrypt';
 import { emailRegEx } from '../helpers';
+import nodemailer from "nodemailer";
+require('dotenv').config();
 import { createToken } from '../helpers/jwt';
 
 const { User, Code } = models;
@@ -63,7 +65,29 @@ const Auth = {
           totalearning : user.totalearning + 0.00,
         })
       }
-      console.log(user)
+      let transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: process.env.portmail,
+        secure: true,
+        auth: {
+            user:process.env.user ,
+            pass: process.env.pass 
+        }, 
+        tls:{
+               rejectUnauthorized : false
+        }
+    });
+    await transporter.sendMail({
+      from: process.env.user,
+      to: `${user.email}`,
+      subject: 'HOSCE Registration Successful',
+      html: `<div><h2>Welcome ${user.fullname} your registration with Hosce is Successful Congratulations!!!</h2>
+      <p>Your username:<b> ${user.username}</b></p>
+      <p>Your password:<b>${req.body.password}</b></p>
+      <p>Please keep your password and username safe</p>
+      <h4>Welcome onces again </h4>
+      </div>`
+  });
       return res.status(201).json({
         status: 'success',
         user: {
