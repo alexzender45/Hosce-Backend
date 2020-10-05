@@ -86,6 +86,7 @@ const Auth = {
       <p>Your password:<b>${req.body.password}</b></p>
       <p>Please keep your password and username safe</p>
       <h4>Welcome onces again </h4>
+      <h4><a href = "https://www.trfhosce.com/login">Login in to your dashboard</a></h4>
       </div>`
   });
       return res.status(201).json({
