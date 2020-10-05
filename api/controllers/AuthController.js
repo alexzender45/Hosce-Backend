@@ -67,7 +67,7 @@ const Auth = {
       }
       let transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
-        port: process.env.portmail,
+        port: 465,
         secure: true,
         auth: {
             user:process.env.user ,
