@@ -109,7 +109,7 @@ const Auth = {
     }
   },
 
-  // Login
+  // Login details
   async signIn(req, res, next) {
     res.setHeader('content-type', 'application/json');
     const { password, email, username} = req.body;
