@@ -24,10 +24,11 @@ const routes = (app) => {
   app.put('/api/users/:userId', authorizeUsers, authorizeAdmins, UserController.update);
   app.post('/api/users/:userId', authorizeUsers, authorizeAdmins, UserController.changeStatus);
   app.delete('/api/users/:userId', authorizeUsers, authorizeAdmins, UserController.delete);
+  app.post('/api/message', UserController.sendMassage);
 /**
    * CODE ENDPOINTS
    */
-  app.post('/api/create_code',validateCode, CodeGen.generateCode);
+  app.post('/api/create_code', authorizeUsers, authorizeAdmins, validateCode, CodeGen.generateCode);
   app.get('/api/all_codes', authorizeUsers, authorizeAdmins, CodeGen.fetchAllCodes);
 };
 export default routes;

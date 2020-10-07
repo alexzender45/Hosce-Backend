@@ -65,6 +65,7 @@ export const validateSignUp = async (req, res, next) => {
   // if (typeof tel !== 'number' || tel < 10000000) {
   //   return res.status(400).send({ error: 'Invalid tel number' });
   // }
+  
   const userByEmail = email ? await User.findOne({ where: { email } }) : null;
   if (userByEmail) {
     return res.status(409).json({

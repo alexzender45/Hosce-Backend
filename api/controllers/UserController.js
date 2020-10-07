@@ -1,5 +1,6 @@
 import models from '../models';
-import { authorizeAdmins } from '../middlewares/authorization';
+const nodemailer = require('nodemailer');
+require('dotenv').config();
 
 const { User } = models;
 
@@ -121,7 +122,38 @@ const UserController = {
     } catch (err) {
       return next(new Error(err));
     }
-  }
+  },
+
+    async sendMassage(req, res, next) {
+      res.setHeader('content-type', 'application/json');
+      try {
+        const {username, email, subjectTopic, message} = req.body;
+        let transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+          auth: {
+              user: process.env.send,
+              pass: process.env.pass 
+          }, 
+      });
+      await transporter.sendMail({
+        from: `${username}`,
+        to: process.env.send,
+        subject: `${subjectTopic}`,
+        html: `<div><h2>${req.body.subjectTopic} from ${req.body.username}</h2>
+        <p>${req.body.message}</p>
+        <p>${email}</p>
+        </div>`
+    });
+    return res.status(200).json({
+      status: 'success'
+    });
+
+      }catch (err) {
+        return next(new Error(err));
+      }
+    }
 };
 
 export default UserController;

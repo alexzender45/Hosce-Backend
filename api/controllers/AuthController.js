@@ -2,7 +2,7 @@ import models from '../models';
 const nodemailer = require('nodemailer');
 import { hashPassword, comparePassword } from '../helpers/bcrypt';
 import { emailRegEx } from '../helpers';
-require('dotenv').config();//
+require('dotenv').config();
 import { createToken } from '../helpers/jwt';
 
 const { User, Code } = models;
@@ -70,7 +70,7 @@ const Auth = {
         port: 465,
         secure: true,
         auth: {
-            user:process.env.user ,
+            user:process.env.send ,
             pass: process.env.pass 
         }, 
         tls:{
@@ -78,7 +78,7 @@ const Auth = {
         }
     });
     await transporter.sendMail({
-      from: process.env.user,
+      from: process.env.send,
       to: `${user.email}`,
       subject: 'HOSCE Registration Successful',
       html: `<div><h2>Welcome ${user.fullname} your registration with Hosce is Successful Congratulations!!!</h2>
