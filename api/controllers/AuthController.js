@@ -43,28 +43,213 @@ const Auth = {
           sponsor: 'No Sponsor'
         })
       }else{
+       
         const see = await User.findOne({ where: { username:check } });
-        if(user.status === 'Normal' || user.status === 'normal'){
+        // Starter Pack
+
+        if(user.status === 'Starter Pack 5,500'){
+          see.update({referralCount : see.referralCount + 1,
+            amountByReferral : see.amountByReferral + 2500,
+            availableincome : user.availableincome + 0.00,
+            totalearning : see.totalearning + 0.00,
+            totalearning : user.totalearning + 0.00,
+        })
+        if(check.sponsor !== null){
+          const credit = await User.findOne({where: { username:check } })
+          //
+         if(credit !== null){
+          const secondGen = await User.findOne({ where: {username:credit.sponsor }})
+           if(credit.sponsor !== 'No Sponsor'){
+      secondGen.update({amountByReferral: secondGen.amountByReferral + 250})
+          }
+    }
+          }
+        }
+
+        // Bronze Pack Normal
+        if((user.status === 'Bronze Pack 10,500') && (see.status === 'Bronze Pack 10,500' || see.status === 'Silver Pack 55,000' || see.status === 'Diamond Pack 110,000' || see.status === 'Gold Pack 225,000' )){ 
+          see.update({referralCount : see.referralCount + 1,
+            amountByReferral : see.amountByReferral + 5000,
+            availableincome : user.availableincome + 0.00,
+            totalearning : see.totalearning + 0.00,
+            totalearning : user.totalearning + 0.00,
+          })
+          if(check.sponsor !== null){
+          const credit = await User.findOne({where: { username:check } })
+          //
+         if(credit !== null){
+          const secondGen = await User.findOne({ where: {username:credit.sponsor }})
+           if(credit.sponsor !== 'No Sponsor'){
+            if(secondGen.status === 'Bronze Pack 10,500' || secondGen.status === 'Silver Pack 55,000' || secondGen.status === 'Diamond Pack 110,000' || secondGen.status === 'Gold Pack 225,000' ){
+      secondGen.update({amountByReferral: secondGen.amountByReferral + 500})
+           }
+          }
+    }
+          }
+      
+        // Bronze Higer Downline
+        }
+
+
+      // Starter Use register Bronze user
+      if((user.status === 'Bronze Pack 10,500') && (see.status === 'Starter Pack 5,500')){
         see.update({referralCount : see.referralCount + 1,
-          amountByReferral : see.amountByReferral + 5000,
+          amountByReferral : see.amountByReferral + 2500,
           availableincome : user.availableincome + 0.00,
-          totalearning : see.totalearning + 5000,
+          totalearning : see.totalearning + 0.00,
           totalearning : user.totalearning + 0.00,
         })
-      }else if(user.status === 'half' || user.status === 'Half'){
-        see.update({referralCount : see.referralCount + 1,
-          amountByReferral : see.amountByReferral + 0.00,
-          availableincome : user.availableincome + 0.00,
-          totalearning : user.totalearning + 0.00,
-        })
+        if(check.sponsor !== null){
+        const credit = await User.findOne({where: { username:check } })
+        //
+       if(credit !== null){
+        const secondGen = await User.findOne({ where: {username:credit.sponsor }})
+         if(credit.sponsor !== 'No Sponsor'){
+          if(secondGen.status === 'Bronze Pack 10,500' || secondGen.status === 'Silver Pack 55,000' || secondGen.status === 'Diamond Pack 110,000' || secondGen.status === 'Gold Pack 225,000' ){
+    secondGen.update({amountByReferral: secondGen.amountByReferral + 500})
+         }
+        }
+  }
+        }
       }
-        user.update({sponsor: check,
-          amountByReferral : user.referralCount + 0.00,
-          referralCount : + 0,
+
+
+      // Silver Pack Normal
+      if((user.status === 'Silver Pack 55,000') && (see.status === 'Silver Pack 55,000' || see.status === 'Diamond Pack 110,000' || see.status === 'Gold Pack 225,000')){
+        see.update({ referralCount : see.referralCount + 1,
+          amountByReferral : see.amountByReferral + 25000,
           availableincome : user.availableincome + 0.00,
           totalearning : user.totalearning + 0.00,
-        })
+      })
+  // Second Gen
+  if(check.sponsor !== null){
+  const firstGen = await User.findOne({ where: {username:check}});
+  if(firstGen !== null){
+  const secondGen = await User.findOne({ where: {username:firstGen.sponsor}})
+  if(firstGen.sponsor !== 'No Sponsor'){
+  if(secondGen.status === 'Silver Pack 55,000' || secondGen.status === 'Diamond Pack 110,000' || secondGen.status === 'Gold Pack 225,000'){
+  secondGen.update({amountByReferral: secondGen.amountByReferral + 2500})
+  }
+  }
+  }
+}
+  }
+
+
+  // Bronze HigerDownline
+  if((see.status === 'Bronze Pack 10,500' || see.status === 'Starter Pack 5,500') && (user.status === 'Silver Pack 55,000')){
+    see.update({ referralCount : see.referralCount + 1,
+      amountByReferral : see.amountByReferral + 12500,
+      availableincome : user.availableincome + 0.00,
+      totalearning : user.totalearning + 0.00,
+  })
+// Second Gen
+if(check.sponsor !== null){
+const firstGen = await User.findOne({ where: {username:check}});
+if(firstGen !== null){
+const secondGen = await User.findOne({ where: {username:firstGen.sponsor}})
+if(firstGen.sponsor !== 'No Sponsor'){
+if(secondGen.status === 'Silver Pack 55,000' || secondGen.status === 'Diamond Pack 110,000' || secondGen.status === 'Gold Pack 225,000'){
+secondGen.update({amountByReferral: secondGen.amountByReferral + 2500})
+}
+}
+}
+}
+}
+
+// Normal Diamond Package
+if((user.status === 'Diamond Pack 110,000') && (see.status === 'Diamond Pack 110,000' || see.status === 'Gold Pack 225,000')){
+  see.update({ referralCount : see.referralCount + 1,
+    amountByReferral : see.amountByReferral + 50000,
+    availableincome : user.availableincome + 0.00,
+    totalearning : user.totalearning + 0.00,
+})
+// Second Gen
+if(check.sponsor !== null){
+const firstGen = await User.findOne({ where: {username:check}});
+if(firstGen !== null){
+const secondGen = await User.findOne({ where: {username:firstGen.sponsor}})
+if(firstGen.sponsor !== 'No Sponsor'){
+if(secondGen.status === 'Diamond Pack 110,000' || secondGen.status === 'Gold Pack 225,000'){
+secondGen.update({amountByReferral: secondGen.amountByReferral + 5000})
+}
+}
+}
+}
+}
+ 
+// Diamond lower See and higher user
+if((see.status === 'Bronze Pack 10,500' || see.status === 'Starter Pack 5,500' || see.status === 'Silver Pack 55,000') && (user.status === 'Diamond Pack 110,000')){
+  see.update({ referralCount : see.referralCount + 1,
+    amountByReferral : see.amountByReferral + 25000,
+    availableincome : user.availableincome + 0.00,
+    totalearning : user.totalearning + 0.00,
+})
+// Second Gen
+if(check.sponsor !== null){
+const firstGen = await User.findOne({ where: {username:check}});
+if(firstGen !== null){
+const secondGen = await User.findOne({ where: {username:firstGen.sponsor}})
+if(firstGen.sponsor !== 'No Sponsor'){
+if(secondGen.status === 'Diamond Pack 110,000' || secondGen.status === 'Gold Pack 225,000'){
+secondGen.update({amountByReferral: secondGen.amountByReferral + 5000})
+}
+}
+}
+}
+}
+
+// Normal Gold Package
+if((user.status === 'Gold Pack 225,000') && (see.status === 'Gold Pack 225,000')){
+  see.update({ referralCount : see.referralCount + 1,
+    amountByReferral : see.amountByReferral + 100000,
+    availableincome : user.availableincome + 0.00,
+    totalearning : user.totalearning + 0.00,
+})
+// Second Gen
+if(check.sponsor !== null){
+const firstGen = await User.findOne({ where: {username:check}});
+if(firstGen !== null){
+const secondGen = await User.findOne({ where: {username:firstGen.sponsor}})
+if(firstGen.sponsor !== 'No Sponsor'){
+if(secondGen.status === 'Gold Pack 225,000'){
+secondGen.update({amountByReferral: secondGen.amountByReferral + 10000})
+}
+}
+}
+}
+}
+ 
+// Gold lower See and higher user
+if((see.status === 'Bronze Pack 10,500' || see.status === 'Starter Pack 5,500' || see.status === 'Silver Pack 55,000' || see.status === 'Diamond Pack 110,000') && (user.status === 'Gold Pack 225,000')){
+  see.update({ referralCount : see.referralCount + 1,
+    amountByReferral : see.amountByReferral + 50000,
+    availableincome : user.availableincome + 0.00,
+    totalearning : user.totalearning + 0.00,
+})
+// Second Gen
+if(check.sponsor !== null){
+const firstGen = await User.findOne({ where: {username:check}});
+if(firstGen !== null){
+const secondGen = await User.findOne({ where: {username:firstGen.sponsor}})
+if(firstGen.sponsor !== 'No Sponsor'){
+if(secondGen.status === 'Gold Pack 225,000'){
+secondGen.update({amountByReferral: secondGen.amountByReferral + 10000})
+}
+}
+}
+}
+}
+
+
+       user.update({sponsor: check,
+        amountByReferral : user.referralCount + 0.00,
+        referralCount : + 0,
+        availableincome : user.availableincome + 0.00,
+        totalearning : user.totalearning + 0.00,
+      })
       }
+
       let transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
         port: 465,
@@ -81,7 +266,7 @@ const Auth = {
       from: process.env.send,
       to: `${user.email}`,
       subject: 'HOSCE Registration Successful',
-      html: `<div><h2>Welcome ${user.fullname} your registration with Hosce is Successful Congratulations!!!</h2>
+      html: `<div><h2>Welcome ${user.fullname} your registration with Hosce is Successful, Congratulations!!!</h2>
       <p>Your username:<b> ${user.username}</b></p>
       <p>Your password:<b>${req.body.password}</b></p>
       <p>Please keep your password and username safe</p>

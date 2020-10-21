@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 app.use((error, req, res, next) => res.status(error.status || 500).json(error));
 routes(app);
 app.use(express.json())
-const port = process.env.PORT || 6000;
+const port = process.env.PORT || 7000;
 app.listen(port, () => console.log(`Server ready at http://localhost:${port}`));
 
 module.exports = app;
