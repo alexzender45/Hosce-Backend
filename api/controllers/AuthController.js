@@ -49,7 +49,7 @@ const Auth = {
 
         if(user.status === 'Starter Pack 5,500'){
           see.update({referralCount : see.referralCount + 1,
-            amountByReferral : see.amountByReferral + 2500,
+            amountByReferral : see.amountByReferral + 1000,
             availableincome : user.availableincome + 0.00,
             totalearning : see.totalearning + 0.00,
             totalearning : user.totalearning + 0.00,
@@ -69,7 +69,7 @@ const Auth = {
         // Bronze Pack Normal
         if((user.status === 'Bronze Pack 10,500') && (see.status === 'Bronze Pack 10,500' || see.status === 'Silver Pack 55,000' || see.status === 'Diamond Pack 110,000' || see.status === 'Gold Pack 225,000' )){ 
           see.update({referralCount : see.referralCount + 1,
-            amountByReferral : see.amountByReferral + 5000,
+            amountByReferral : see.amountByReferral + 2000,
             availableincome : user.availableincome + 0.00,
             totalearning : see.totalearning + 0.00,
             totalearning : user.totalearning + 0.00,
@@ -94,7 +94,7 @@ const Auth = {
       // Starter Use register Bronze user
       if((user.status === 'Bronze Pack 10,500') && (see.status === 'Starter Pack 5,500')){
         see.update({referralCount : see.referralCount + 1,
-          amountByReferral : see.amountByReferral + 2500,
+          amountByReferral : see.amountByReferral + 1000,
           availableincome : user.availableincome + 0.00,
           totalearning : see.totalearning + 0.00,
           totalearning : user.totalearning + 0.00,
@@ -117,7 +117,7 @@ const Auth = {
       // Silver Pack Normal
       if((user.status === 'Silver Pack 55,000') && (see.status === 'Silver Pack 55,000' || see.status === 'Diamond Pack 110,000' || see.status === 'Gold Pack 225,000')){
         see.update({ referralCount : see.referralCount + 1,
-          amountByReferral : see.amountByReferral + 25000,
+          amountByReferral : see.amountByReferral + 10000,
           availableincome : user.availableincome + 0.00,
           totalearning : user.totalearning + 0.00,
       })
@@ -139,7 +139,7 @@ const Auth = {
   // Bronze HigerDownline
   if((see.status === 'Bronze Pack 10,500' || see.status === 'Starter Pack 5,500') && (user.status === 'Silver Pack 55,000')){
     see.update({ referralCount : see.referralCount + 1,
-      amountByReferral : see.amountByReferral + 12500,
+      amountByReferral : see.amountByReferral + 10000,
       availableincome : user.availableincome + 0.00,
       totalearning : user.totalearning + 0.00,
   })
@@ -160,7 +160,7 @@ secondGen.update({amountByReferral: secondGen.amountByReferral + 2500})
 // Normal Diamond Package
 if((user.status === 'Diamond Pack 110,000') && (see.status === 'Diamond Pack 110,000' || see.status === 'Gold Pack 225,000')){
   see.update({ referralCount : see.referralCount + 1,
-    amountByReferral : see.amountByReferral + 50000,
+    amountByReferral : see.amountByReferral + 20000,
     availableincome : user.availableincome + 0.00,
     totalearning : user.totalearning + 0.00,
 })
@@ -181,7 +181,7 @@ secondGen.update({amountByReferral: secondGen.amountByReferral + 5000})
 // Diamond lower See and higher user
 if((see.status === 'Bronze Pack 10,500' || see.status === 'Starter Pack 5,500' || see.status === 'Silver Pack 55,000') && (user.status === 'Diamond Pack 110,000')){
   see.update({ referralCount : see.referralCount + 1,
-    amountByReferral : see.amountByReferral + 25000,
+    amountByReferral : see.amountByReferral + 20000,
     availableincome : user.availableincome + 0.00,
     totalearning : user.totalearning + 0.00,
 })
@@ -202,7 +202,7 @@ secondGen.update({amountByReferral: secondGen.amountByReferral + 5000})
 // Normal Gold Package
 if((user.status === 'Gold Pack 225,000') && (see.status === 'Gold Pack 225,000')){
   see.update({ referralCount : see.referralCount + 1,
-    amountByReferral : see.amountByReferral + 100000,
+    amountByReferral : see.amountByReferral + 40000,
     availableincome : user.availableincome + 0.00,
     totalearning : user.totalearning + 0.00,
 })
@@ -223,7 +223,7 @@ secondGen.update({amountByReferral: secondGen.amountByReferral + 10000})
 // Gold lower See and higher user
 if((see.status === 'Bronze Pack 10,500' || see.status === 'Starter Pack 5,500' || see.status === 'Silver Pack 55,000' || see.status === 'Diamond Pack 110,000') && (user.status === 'Gold Pack 225,000')){
   see.update({ referralCount : see.referralCount + 1,
-    amountByReferral : see.amountByReferral + 50000,
+    amountByReferral : see.amountByReferral + 40000,
     availableincome : user.availableincome + 0.00,
     totalearning : user.totalearning + 0.00,
 })
